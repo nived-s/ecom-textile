@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:tony_textiles/controllers/mainscreen_provider.dart';
 import 'package:tony_textiles/views/screens/mainscreen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => MainScreenNotifier(),
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -10,8 +21,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MainScreen()
-    );
+    return MaterialApp(home: MainScreen());
   }
 }
